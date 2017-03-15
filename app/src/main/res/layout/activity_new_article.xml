@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.example.manan.enhancedurdureader.CustomViews.NastaleeqEditText
+        android:id="@+id/new_article_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:hint="عنوان"
+        android:textSize="30dp"/>
+
+    <com.example.manan.enhancedurdureader.CustomViews.NastaleeqEditText   android:id="@+id/new_article_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/new_article_title"
+        android:minLines="13"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        android:gravity="top|right"
+        android:hint="مضمون کا متن۔۔۔"
+        android:textSize="24dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/save_article"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/save_icon"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp" />
+</RelativeLayout>
