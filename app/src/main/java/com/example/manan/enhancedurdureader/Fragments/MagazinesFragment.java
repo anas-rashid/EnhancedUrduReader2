@@ -1,11 +1,10 @@
 package com.example.manan.enhancedurdureader.Fragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +16,7 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import com.bumptech.glide.Glide;
 import com.example.manan.enhancedurdureader.Activities.ArticleReadingActivity;
-import com.example.manan.enhancedurdureader.Activities.SegmentedBookReaderActivity;
 import com.example.manan.enhancedurdureader.Adapters.ArticleAdapter;
 import com.example.manan.enhancedurdureader.Adapters.MagazineAdapter;
 import com.example.manan.enhancedurdureader.ApplicationEntities.Article;
@@ -78,7 +75,7 @@ public class MagazinesFragment extends Fragment {
             public View makeView() {
                 TextView textView = new TextView(getActivity());
                 textView.setGravity(Gravity.CENTER);
-                textView.setTextAppearance(getContext(),android.R.style.TextAppearance_Large);
+                textView.setTextAppearance(getContext(), android.R.style.TextAppearance_Large);
 
                 return textView;
             }
@@ -94,7 +91,7 @@ public class MagazinesFragment extends Fragment {
             public View makeView() {
                 TextView textView = new TextView(getActivity());
                 textView.setGravity(Gravity.CENTER);
-                textView.setTextAppearance(getContext(),android.R.style.TextAppearance_Large);
+                textView.setTextAppearance(getContext(), android.R.style.TextAppearance_Large);
 
                 return textView;
             }
@@ -105,7 +102,7 @@ public class MagazinesFragment extends Fragment {
         magazinesCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-                magazineTextSwitcher.setText(magazines.get(position%magazines.size()).getTitleResId());
+                magazineTextSwitcher.setText(magazines.get(position % magazines.size()).getTitleResId());
             }
 
             @Override
@@ -116,8 +113,9 @@ public class MagazinesFragment extends Fragment {
         articlesCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-                articleTextSwitcher.setText(articles.get(position%articles.size()).getArticleTitle());
+                articleTextSwitcher.setText(articles.get(position % articles.size()).getArticleTitle());
             }
+
             @Override
             public void onScrolling() {
                 articleTextSwitcher.setText("");
@@ -131,7 +129,7 @@ public class MagazinesFragment extends Fragment {
                 articleAdapter = new ArticleAdapter(getContext());
                 articleAdapter.setData(articles);
                 articlesCoverFlow.setAdapter(articleAdapter);*/
-                new SetMagazineArticlesTask().execute(position%magazines.size());
+                new SetMagazineArticlesTask().execute(position % magazines.size());
 
             }
         });
@@ -140,7 +138,7 @@ public class MagazinesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent readActivity = new Intent(view.getContext(), ArticleReadingActivity.class);
-                Article a = (Article)articleAdapter.getItem(position%articleAdapter.getCount());
+                Article a = (Article) articleAdapter.getItem(position % articleAdapter.getCount());
                 readActivity.putExtra("articleId", a.get_id());
                 startActivity(readActivity);
 
@@ -156,20 +154,20 @@ public class MagazinesFragment extends Fragment {
 
         Integer vtCount;
         ArrayList<Article> articles;
+
         @Override
         protected String doInBackground(Integer... params) {
             int position = params[0];
-            int magID = magazines.get(position%magazines.size()).get_id();
+            int magID = magazines.get(position % magazines.size()).get_id();
 
-            if(magID == 1)
+            if (magID == 1)
                 articles = db.getMagazineArticles(0);
-            else if(magID == 2)
+            else if (magID == 2)
                 articles = db.getAllArticles();
-            else
-            {
-                articles = db.getMagazineArticles(magazines.get(position%magazines.size()).get_id());
+            else {
+                articles = db.getMagazineArticles(magazines.get(position % magazines.size()).get_id());
             }
-            if(articles.size()>0) {
+            if (articles.size() > 0) {
                 articleAdapter = new ArticleAdapter(getContext());
                 articleAdapter.setData(articles);
             }
@@ -180,7 +178,7 @@ public class MagazinesFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (dialog.isShowing()) {
-                if(articles.size()>0)
+                if (articles.size() > 0)
                     articlesCoverFlow.setAdapter(articleAdapter);
                 dialog.dismiss();
             }
@@ -195,13 +193,13 @@ public class MagazinesFragment extends Fragment {
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {}
+        protected void onProgressUpdate(Void... values) {
+        }
     }
 
-    public void UpdateMagazine()
-    {
+    public void UpdateMagazine() {
         LoadMagazines();
-        magazineAdapter= new MagazineAdapter(getContext());
+        magazineAdapter = new MagazineAdapter(getContext());
         magazineAdapter.setData(magazines);
         magazinesCoverFlow.setAdapter(magazineAdapter);
 
@@ -209,15 +207,14 @@ public class MagazinesFragment extends Fragment {
         //magazineAdapter.notifyDataSetChanged();
         //magazinesCoverFlow.setAdapter(magazineAdapter);
     }
-    void LoadMagazines()
-    {
+
+    void LoadMagazines() {
         magazines = db.getAllMagzines();
     }
-    void LoadArticles()
-    {
+
+    void LoadArticles() {
         articles = db.getAllArticles();
-        if(articles.size()<=0)
-        {
+        if (articles.size() <= 0) {
             Article art = new Article();
             art.set_id(100);
             art.setArticleBody("This is our fyp");
@@ -226,7 +223,6 @@ public class MagazinesFragment extends Fragment {
             articles.add(art);
         }
     }
-
 
 
 }
