@@ -2,8 +2,6 @@ package com.example.manan.enhancedurdureader.Adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +15,9 @@ import com.example.manan.enhancedurdureader.ApplicationEntities.Magazine;
 import com.example.manan.enhancedurdureader.DataStorage.LocalStorage;
 import com.example.manan.enhancedurdureader.R;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Map;
 
 /**
  * Created by manan on 3/9/17.
@@ -99,8 +93,12 @@ public class MagazineAdapter extends BaseAdapter {
                 Glide.with(mContext).load(R.drawable.all_articles_magazine).into(magazineTitlePage);
             else if(magazineID ==1 )
                 Glide.with(mContext).load(R.drawable.saved_articles_magazine).into(magazineTitlePage);
-            else {
+            else if(mData.get(position%mData.size()).getImageResId() != null) {
                 Glide.with(mContext).load(new File(mData.get(position%mData.size()).getImageResId())).skipMemoryCache(false).into(magazineTitlePage);
+            } else {
+
+                Glide.with(mContext).load(R.drawable.saved_articles_magazine).into(magazineTitlePage);
+
             }
 
         }

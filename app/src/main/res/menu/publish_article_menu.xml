@@ -4,7 +4,23 @@
     <item
         android:id="@+id/action_edit_article"
         android:orderInCategory="100"
-        android:title="AddCover"
+        android:title="Edit Article"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_upload_article"
+        android:orderInCategory="100"
+        android:title="Publish Article"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_upvote"
+        android:orderInCategory="100"
+        android:title="Upvote Article"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_downvote"
+        android:orderInCategory="100"
+        android:title="Downvote Article"
         app:showAsAction="never" />
 
 

@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EnhancedUrduReader.iml" filepath="$PROJECT_DIR$/EnhancedUrduReader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SalesforceAnalytics/SalesforceAnalytics.iml" filepath="$PROJECT_DIR$/SalesforceAnalytics/SalesforceAnalytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SalesforceSDK/SalesforceSDK.iml" filepath="$PROJECT_DIR$/SalesforceSDK/SalesforceSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartStore/SmartStore.iml" filepath="$PROJECT_DIR$/SmartStore/SmartStore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartSync/SmartSync.iml" filepath="$PROJECT_DIR$/SmartSync/SmartSync.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/epublib-core-latest/epublib-core-latest.iml" filepath="$PROJECT_DIR$/epublib-core-latest/epublib-core-latest.iml" />
     </modules>

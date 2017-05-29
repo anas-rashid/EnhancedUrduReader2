@@ -11,6 +11,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".MainApplication"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.MainActivity"
@@ -28,6 +29,8 @@
         <activity android:name=".Activities.ArticlePublishActivity" />
         <activity android:name=".Activities.SegmentedBookReaderActivity" />
         <activity android:name=".Activities.EpubReaderActivity"></activity>
+        <activity android:name=".Activities.SalesforceDownloadActivity"></activity>
+        <activity android:name=".Activities.SalesforceUploadActivity"></activity>
     </application>
 
 </manifest>

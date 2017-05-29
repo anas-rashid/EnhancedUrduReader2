@@ -1,9 +1,14 @@
 package com.example.manan.enhancedurdureader.Fragments;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
-import android.support.v4.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +20,15 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import com.bumptech.glide.Glide;
-import com.example.manan.enhancedurdureader.Activities.ArticleReadingActivity;
 import com.example.manan.enhancedurdureader.Activities.EpubReaderActivity;
 import com.example.manan.enhancedurdureader.Activities.SegmentedBookReaderActivity;
 import com.example.manan.enhancedurdureader.Adapters.BooksAdapter;
-import com.example.manan.enhancedurdureader.ApplicationEntities.Article;
 import com.example.manan.enhancedurdureader.ApplicationEntities.Book;
 import com.example.manan.enhancedurdureader.ApplicationEntities.EpubBook;
 import com.example.manan.enhancedurdureader.ApplicationEntities.SegmentedBook;
 import com.example.manan.enhancedurdureader.R;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -112,7 +113,26 @@ public class BooksFragment extends Fragment {
     {
         ArrayList<File> bookFiles = new ArrayList<File>();
 
-        bookFiles = new ArrayList<File>(Arrays.asList(new File("storage/sdcard1/EnhancedBooks/").listFiles()));
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                bookFiles = new ArrayList<File>(Arrays.asList(new File("/storage/398A-161B/EnhancedBooks/").listFiles()));
+               // Log.v(TAG,"Permission is granted");
+               // return true;
+            } else {
+
+            //    Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                //return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            bookFiles = new ArrayList<File>(Arrays.asList(new File("/storage/398A-161B/EnhancedBooks/").listFiles()));
+           // Log.v(TAG,"Permission is granted");
+            //return true;
+        }
+
+        bookFiles = new ArrayList<File>(Arrays.asList(new File("/storage/398A-161B/EnhancedBooks/").listFiles()));
 
         for(File bookFile:bookFiles)
         {

@@ -236,17 +236,24 @@ public class LocalStorage extends SQLiteOpenHelper {
         //c.put(MAGZINE_COLUMN_EDITOR_ID, magzine.getEditorId());
 
 
+
         SQLiteDatabase db = getWritableDatabase();
 
-        try{
+       // int nRowsEffected = db.update(DATABASE_NAME, c, "name = '"+magzine.getTitleResId()+"'", null);
 
-            Log.w("name", MAGZINE_COLUMN_NAME);
-            Log.w("cover", MAGZINE_COLUMN_COVER_PATH);
-            db.insert(DATABASE_TABLE_MAGZINES, null,c);
+//        if(nRowsEffected <= 0) {
+            try{
 
-        } catch (SQLiteException e){
-            Log.w("Exception", e.getMessage());
-        }
+                Log.w("name", MAGZINE_COLUMN_NAME);
+                Log.w("cover", MAGZINE_COLUMN_COVER_PATH);
+                db.insert(DATABASE_TABLE_MAGZINES, null,c);
+
+            } catch (SQLiteException e){
+                Log.w("Exception", e.getMessage());
+            }
+      //  }
+
+
 
     }
     public void deleteMagzine(Integer id){
@@ -320,15 +327,20 @@ public class LocalStorage extends SQLiteOpenHelper {
         //c.put(ARTICLE_COLUMN_AUTHOR_ID, 1);
 
         SQLiteDatabase db = getWritableDatabase();
+      //  int nRowsEffected = db.update(DATABASE_NAME, c, "name = '"+article.getArticleTitle()+"'", null);
 
-        try{
+        //if(nRowsEffected <= 0) {
+            try{
 
-            db.insert(DATABASE_TABLE_ARTICLES, null,c);
-            // Log.w("Inserting...", String.valueOf( db.insert(DATABASE_TABLE_ARTICLES, null,c)));
+                db.insert(DATABASE_TABLE_ARTICLES, null,c);
+                // Log.w("Inserting...", String.valueOf( db.insert(DATABASE_TABLE_ARTICLES, null,c)));
 
-        } catch (SQLiteException e){
-            Log.w("Exception", e.getMessage());
-        }
+            } catch (SQLiteException e){
+                Log.w("Exception", e.getMessage());
+            }
+//        }
+
+
 
     }
     public void updateArticle(Article article){
@@ -393,6 +405,23 @@ public class LocalStorage extends SQLiteOpenHelper {
         db.close();
 
         return article;
+    }
+
+    public boolean checkArticle(String name) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "Select * from " + DATABASE_TABLE_ARTICLES+" where title = \""+name+"\"";
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        if(c.getCount() > 0){
+
+            return true;
+        }
+        else return false;
+
+
+
     }
     public ArrayList<Article> getMagazineArticles(Integer magazineID)
     {

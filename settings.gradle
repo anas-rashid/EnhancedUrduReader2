@@ -1,1 +1,1 @@
-include ':app', ':epublib-core-latest'
+include ':app', ':epublib-core-latest', ':SalesforceSDK', ':SmartSync', ':SalesforceAnalytics', ':SmartStore'

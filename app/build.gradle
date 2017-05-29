@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //multiDexEnabled = true
     }
     buildTypes {
         release {
@@ -32,4 +33,9 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile files('libs/epublib-core-latest.jar')
     compile files('libs/slf4j-android-1.6.1-RC1.jar')
+    compile project(':SmartSync')
+    compile project(':SalesforceAnalytics')
+    compile project(':SalesforceSDK')
+    compile project(':SmartStore')
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
 }

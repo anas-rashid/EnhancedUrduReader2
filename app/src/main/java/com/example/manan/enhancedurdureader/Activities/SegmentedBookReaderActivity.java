@@ -5,46 +5,24 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.GenericRequestBuilder;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.ResourceDecoder;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.Resource;
-import com.bumptech.glide.load.model.StreamEncoder;
-import com.bumptech.glide.load.model.stream.StreamUriLoader;
-import com.bumptech.glide.load.resource.SimpleResource;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.example.manan.enhancedurdureader.ApplicationEntities.BookInfo;
 import com.example.manan.enhancedurdureader.ApplicationEntities.PageInfo;
 import com.example.manan.enhancedurdureader.ApplicationEntities.PageOffset;
-import com.example.manan.enhancedurdureader.ApplicationEntities.SegmentedBook;
 import com.example.manan.enhancedurdureader.R;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 
 public class SegmentedBookReaderActivity extends AppCompatActivity {
 
@@ -139,7 +117,7 @@ public class SegmentedBookReaderActivity extends AppCompatActivity {
             iView.setId(View.generateViewId());
             iView.setBackground(new BitmapDrawable(getResources(), image));
 
-            totalLineWidth += image.getWidth();
+            totalLineWidth += image.getWidth()/3;//div by num
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(image.getWidth(), image.getHeight());
 
             if (pageInfo.lastRenderedLigature == null) {
@@ -150,7 +128,7 @@ public class SegmentedBookReaderActivity extends AppCompatActivity {
             } else if (totalLineWidth >= pageInfo.pageWidth) {
                 params.addRule(RelativeLayout.BELOW, pageInfo.previousLineFirstRenderedLigature.getId());
                 params.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE);
-                int maxHeight = getMaxHeightLigature(i);
+                int maxHeight = getMaxHeightLigature(i)/7;//div by num
                 if (maxHeight > bookInfo.margin) {
                     //params.setMargins(0,bookInfo.margin+(maxHeight - bookInfo.margin - iView.getHeight()),0,0);
                     params.setMargins(0, bookInfo.margin + maxHeight, 0, 0);
@@ -171,6 +149,7 @@ public class SegmentedBookReaderActivity extends AppCompatActivity {
             }
 
             //if((i+1) >= ((bookInfo.maxLinesInPage+1) * bookInfo.maxLigaturesInLine)) {
+            //
             if (totalPageHeight >= pageInfo.pageHeight) {
                 pageOffset.endingLigatureIndex = j - 1;
                 break;

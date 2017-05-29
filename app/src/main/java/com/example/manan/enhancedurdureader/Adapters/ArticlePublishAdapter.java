@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.manan.enhancedurdureader.ApplicationEntities.Article;
 import com.example.manan.enhancedurdureader.ApplicationEntities.Magazine;
@@ -81,10 +80,12 @@ public class ArticlePublishAdapter extends BaseAdapter {
                 magazineTitlePage.setImageResource(R.drawable.all_articles_magazine);
             else if(image == null && magazineID ==1 )
                 magazineTitlePage.setImageResource(R.drawable.saved_articles_magazine);
-            else {
+            else if(image != null) {
                 magazineTitlePage.setImageBitmap(image);
                 imageCache.put(position,image);
 
+            } else {
+                magazineTitlePage.setImageResource(R.drawable.saved_articles_magazine);
             }
         }
 

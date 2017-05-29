@@ -23,6 +23,7 @@ import com.example.manan.enhancedurdureader.ApplicationEntities.Article;
 import com.example.manan.enhancedurdureader.ApplicationEntities.Magazine;
 import com.example.manan.enhancedurdureader.DataStorage.LocalStorage;
 import com.example.manan.enhancedurdureader.R;
+import com.salesforce.androidsdk.rest.RestClient;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,8 @@ public class MagazinesFragment extends Fragment {
     TextSwitcher articleTextSwitcher;
 
     LocalStorage db = null;
+
+    RestClient client;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -222,6 +225,8 @@ public class MagazinesFragment extends Fragment {
 
             articles.add(art);
         }
+
+
     }
 
 

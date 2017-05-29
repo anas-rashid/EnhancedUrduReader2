@@ -3,10 +3,9 @@ package com.example.manan.enhancedurdureader.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,21 +13,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.manan.enhancedurdureader.Adapters.PagerAdapter;
-import com.example.manan.enhancedurdureader.ApplicationEntities.Magazine;
 import com.example.manan.enhancedurdureader.CustomViews.CustomViewPager;
 import com.example.manan.enhancedurdureader.Fragments.MagazinesFragment;
 import com.example.manan.enhancedurdureader.R;
+import com.salesforce.androidsdk.rest.RestClient;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    SalesforceDownloadActivity sfActivity = new SalesforceDownloadActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Loading Articles", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -89,6 +91,12 @@ public class MainActivity extends AppCompatActivity
 
             Intent newArticle = new Intent(this, NewArticleActivity.class);
             startActivity(newArticle);
+            return true;
+        }
+        if (id == R.id.action_refresh) {
+
+            Intent refreshFromSalesforce = new Intent(this, SalesforceDownloadActivity.class);
+            startActivity(refreshFromSalesforce);
             return true;
         }
 
@@ -156,4 +164,10 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
+
+    RestClient client;
+
+
+    //public  static ArrayAdapter<String> listAdapter;
+
 }

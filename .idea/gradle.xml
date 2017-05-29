@@ -8,6 +8,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/SalesforceAnalytics" />
+            <option value="$PROJECT_DIR$/SalesforceSDK" />
+            <option value="$PROJECT_DIR$/SmartStore" />
+            <option value="$PROJECT_DIR$/SmartSync" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/epublib-core-latest" />
           </set>

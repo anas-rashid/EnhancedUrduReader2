@@ -13,7 +13,7 @@
         android:id="@+id/article_read_act_title"
         android:textSize="30dp" />
 
-    <com.example.manan.enhancedurdureader.CustomViews.NastaleeqTextView
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical|horizontal"
@@ -26,7 +26,7 @@
         android:padding="4dp"
         android:id="@+id/article_read_act_body"
         android:textSize="22dp" />
-    <android.support.design.widget.FloatingActionButton
+   <!-- <android.support.design.widget.FloatingActionButton
         android:id="@+id/publish_article"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="12dp" />
+        android:layout_marginEnd="12dp" />-->
 
     <LinearLayout
         android:id="@+id/voting_bar"
@@ -49,7 +49,7 @@
         android:layout_below="@id/article_read_act_body">
 
 
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <TextView
@@ -67,10 +67,10 @@
                 android:layout_weight="0.8"
                 android:src="@drawable/upvote_icon"/>
 
-        </LinearLayout>
+        </LinearLayout> -->
 
 
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
@@ -88,7 +88,7 @@
                 android:text="0"
                 android:layout_weight="0.2"
                 android:id="@+id/total_downvotes"/>
-        </LinearLayout>
+        </LinearLayout> -->
 
 
 
